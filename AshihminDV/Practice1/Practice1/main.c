@@ -28,7 +28,7 @@ int main() {
 	//printf("%lf %lf %lf %lf \n", bokov, nst, nvn, dveri);
 	// считаем количество полок и массу одной полки массу
 	int kp = h/(tdsp + 0.4);
-	double mp = (w - 2 * tdsp) * (d-td) * tdsp * pldsp;
+	double mp = (w - 2 * tdsp) * d * tdsp * pldsp;
 	//printf("%lf \n", mp);
 	//расчитываем массу шкафа
 	double massa = bokov * 2 + nst + nvn * 2 + dveri + mp * kp ;
