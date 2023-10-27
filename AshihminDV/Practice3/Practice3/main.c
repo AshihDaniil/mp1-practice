@@ -37,7 +37,7 @@ int main() {
 		int v_gran = 1000, n_gran = 1;
 		zn = 500;
 		printf("Вы загадали число больше или меньше %d \n", zn);
-		scanf(" %c", &znak);
+		scanf("%*c%c", &znak);
 		while (znak != '=') {
 			switch (znak) {
 			case '>':
@@ -51,7 +51,7 @@ int main() {
 			default: break;
 			}
 			printf("Вы загадали число больше или меньше %d \n", zn);
-			scanf("%s", &znak);
+			scanf("%*c%c", &znak);
 			kp++;
 		}
 		printf("Вы загадали число %d \n", zn);
