@@ -5,7 +5,8 @@
 #include <locale.h>
 #define N 6
 
-int baza[N][4] = { {1, 1, 1, 1}, {1,2,0,1},{1,3,0,1},{1,4,0,1},{2,4,0,2},{1,5,0,3} };
+char* baza[N] = { "1111", "1201","1301", "1401", "2402","1503" };
+//int baza[N][4] = { {1, 1, 1, 1}, {1,2,0,1},{1,3,0,1},{1,4,0,1},{2,4,0,2},{1,5,0,3} };
 char* names[N] = { "Хлеб", "Вода","Молоко", "Пельмени", "Макароны", "Шоколад" };
 int price[N] = { 30, 40, 70, 150, 95, 80 };
 double sale[N];
@@ -17,12 +18,14 @@ int chek_shtrih(int n, int shtrih);
 int main() {
 	setlocale(LC_ALL, "Rus");
 	int shtih, i, sum=0;
+	char shtrih = 0;
 	double r_skidka = 0.0;
 	int kt[N] = { 0, 0, 0, 0, 0, 0 };
 	printf("Введите штрихкод товара, для завешения покупки введите 0\n");
 	make_sale(N);
 	do {
 		scanf(" %d", &shtih);
+
 		if (shtih != 0) {
 			i = chek_shtrih(N, shtih);
 			while (i == -1) {
@@ -64,19 +67,18 @@ void tovar_info(int i, int k) {
 }
 
 int chek_shtrih(int n, int shtrih) {
-	int i = 0, j = 0, trash = shtrih, flag=1, del;
-	int sum = 0;
-	for (; i < n; i++) {
-		trash = shtrih;
-		flag = 1;
-		for (j = 3; j >-1; j--) {
-			if (baza[i][j] != trash %10) {
-				flag = 0;
-				break;
-			}
-			trash = trash / 10;
-		}
-		if (flag == 1) {
+	int i = 0, trash = shtrih;
+	char str_shtrih[5];
+	_itoa(trash, str_shtrih, 10);
+
+	//printf("0");
+	//for (i = 0; i < 5; i++) {
+	//	printf("%c", str_shtrih[i]);
+	//	printf("\n");
+	//}
+
+	for (i = 0; i < n; i++) {
+		if (strcmp(str_shtrih, baza[i]) == 0){
 			return i;
 		}
 	}
