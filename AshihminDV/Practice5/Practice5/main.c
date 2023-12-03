@@ -6,7 +6,6 @@
 #define N 6
 
 char* baza[N] = { "1111", "1201","1301", "1401", "2402","1503" };
-//int baza[N][4] = { {1, 1, 1, 1}, {1,2,0,1},{1,3,0,1},{1,4,0,1},{2,4,0,2},{1,5,0,3} };
 char* names[N] = { "Хлеб", "Вода","Молоко", "Пельмени", "Макароны", "Шоколад" };
 int price[N] = { 30, 40, 70, 150, 95, 80 };
 double sale[N];
@@ -25,7 +24,6 @@ int main() {
 	make_sale(N);
 	do {
 		scanf(" %d", &shtih);
-
 		if (shtih != 0) {
 			i = chek_shtrih(N, shtih);
 			while (i == -1) {
@@ -70,13 +68,6 @@ int chek_shtrih(int n, int shtrih) {
 	int i = 0, trash = shtrih;
 	char str_shtrih[5];
 	_itoa(trash, str_shtrih, 10);
-
-	//printf("0");
-	//for (i = 0; i < 5; i++) {
-	//	printf("%c", str_shtrih[i]);
-	//	printf("\n");
-	//}
-
 	for (i = 0; i < n; i++) {
 		if (strcmp(str_shtrih, baza[i]) == 0){
 			return i;
