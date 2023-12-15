@@ -19,7 +19,7 @@ void chek(int *kt, double *sum, double *r_skidka);
 int main() {
 	int i;
 	char shtih[MAX_LEN];
-	double r_skidka = 0.0, sum = 0.0;
+	double r_skidka, sum;
 	int kt[N] = { 0, 0, 0, 0, 0, 0 };
 	setlocale(LC_ALL, "Rus");
 	printf("Введите штрихкод товара, для завешения покупки введите 'res'\n");
@@ -42,6 +42,7 @@ int main() {
 	printf("\nЦена без скидки составляет %.2lf\n", sum);
 	printf("Скидка составляет %.2lf\n", r_skidka);
 	printf("К оплате: %.2lf\n", sum - r_skidka);
+	return 0;
 }
 void make_sale(int n) {
 	int i;
@@ -53,7 +54,7 @@ void make_sale(int n) {
 void tovar_info(int i, int k) {
 	printf("Наименование товара %s\n", names[i]);
 	printf("Цена %.2lf\n", price[i]);
-	printf("Скидка %.0lf процентов\n", sale[i]*100);
+	printf("Скидка %.0lf%%\n", sale[i]*100);
 	if (k != 0) {
 		printf("Количество: %d\n", k);
 	}
@@ -75,6 +76,8 @@ int chek_shtrih(int n, char *shtrih) {
 
 void chek(int* kt, double* sum, double* r_skidka) {
 	int i = 0;
+	*sum = 0.0;
+	*r_skidka = 0.0;
 	for (i = 0; i < N; i++) {
 		*sum += (double)(kt[i] * price[i]);
 		*r_skidka += price[i] * sale[i] * kt[i];
