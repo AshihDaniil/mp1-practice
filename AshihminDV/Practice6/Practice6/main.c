@@ -2,15 +2,20 @@
 #include<locale.h>
 #include<windows.h>
 #include <stdlib.h>
-#include <time.h>
+#include <omp.h>
 #include <memory.h>
+
 #define BUFFER 2048
+#define test 1000000000
 //1 выбором 2 пузырьком 3 быстрая
+//D:\ttc\totalcmd
 
 int Fill_the_List(char *adres, wchar_t** FileNames, ULONGLONG* FileSize, unsigned long* Index);
+
 void bubble_sort(int dl, ULONGLONG* FileSize,unsigned long* Index);
 void choose_sort(ULONGLONG* FileSize, int dl, unsigned long* Index);
-void fast_sort(ULONGLONG* FileSize, int dl, unsigned long* Index);
+void fast_sort(ULONGLONG* FileSize, unsigned long* Index, int left, int right);
+
 void print_massiv(wchar_t** FileNames, ULONGLONG* FileSize, int k, unsigned long* Index);
 void choose_the_sort();
 
@@ -26,7 +31,7 @@ int main() {
 
 	wchar_t** FileNames = (wchar_t**)malloc(BUFFER * sizeof(wchar_t*));
 
-	clock_t start, finish;
+	double start, finish;
 	double finaltime = 0.0 ;
 
 	setlocale(LC_ALL, "Rus");
@@ -50,22 +55,22 @@ int main() {
 		switch (rezhim)
 		{
 		case 1:
-			start = clock(0);
+			start = omp_get_wtime();
 			printf("Сортировка выбором\n");
 			choose_sort(copy_FileSize, k, copy_Index);
-			finish = clock(0);
+			finish = omp_get_wtime();
 			break;
 		case 2:
-			start = clock(0);
+			start = omp_get_wtime();
 			printf("Сортировка пузырьком\n");
 			bubble_sort(k, copy_FileSize, copy_Index);
-			finish = clock(0);
+			finish = omp_get_wtime();
 			break;
 		case 3:
-			start = clock(0);
+			start = omp_get_wtime();
 			printf("Быстрая сортировка\n");
-			fast_sort(copy_FileSize, k, copy_Index);
-			finish = clock(0);
+			fast_sort(copy_FileSize, copy_Index, 0, k-1);
+			finish = omp_get_wtime();
 			break;
 		case 4:
 			continue;
@@ -74,9 +79,9 @@ int main() {
 			printf("Неверный ввод. Попробуйте заново\n");
 			continue;
 		}
-		finaltime = difftime(finish, start);
+
 		printf("_ _ _ _ _ _ _ _ Отсортировано _ _ _ _ _ _ _ _ \n");
-		printf("Время Сортировки: %lf секунды \n", finaltime);
+		printf("Время Сортировки: %5.15lf секунды \n", finish-start);
 		print_massiv(FileNames, copy_FileSize, k, Index);
 		printf("Можете выбрать другую сортировку) ");
 
@@ -93,6 +98,8 @@ int Fill_the_List(char* adres, wchar_t** FileNames, ULONGLONG* FileSize, unsigne
 	int i = 0;
 	WIN32_FIND_DATA fd;
 	wchar_t* itog_adres;
+	long fDataFSize;
+
 	_getws(adres);
 	itog_adres = (wchar_t*)malloc(BUFFER * sizeof(wchar_t));
 	wsprintf(itog_adres, L"%s\\*", adres);
@@ -109,7 +116,7 @@ int Fill_the_List(char* adres, wchar_t** FileNames, ULONGLONG* FileSize, unsigne
 		do {
 			if (strcmp(fd.cFileName, ".") != 0 && strcmp(fd.cFileName, "..") != 0) {
 				//SIZE
-				FileSize[i] = fd.nFileSizeLow + (fd.nFileSizeHigh * (MAXDWORD + 1));
+				FileSize[i] = (ULONGLONG)(fd.nFileSizeLow + ((fd.nFileSizeHigh) * (MAXDWORD + 1)));
 				//NAME
 				FileNames[i] = (wchar_t*)malloc(sizeof(wchar_t) * BUFFER);
 				wsprintf(itog_adres, L"%s\\%s", adres, fd.cFileName);
@@ -135,13 +142,13 @@ void choose_the_sort() {
 void print_massiv(wchar_t** FileNames, ULONGLONG* FileSize, int k, unsigned long* Index) {
 	int i = 0; 
 	for (i = 0; i < k; i++) {
-		printf("%5d: %S размер (%d байт)\n", i + 1, FileNames[Index[i]], FileSize[i]);
+		printf("%5d: %S размер (%llu байт)\n", i + 1, FileNames[Index[i]], FileSize[i]);
 	}
 }
 
 void bubble_sort(int dl, ULONGLONG* FileSize, unsigned long* Index) {
 	int i, j, copy_index;
-	unsigned long copy_size;
+	unsigned long long copy_size;
 	for (i = 0; i < dl; i++) {
 		for (j = 0; j < dl - 1; j++) {
 			if(FileSize[j]>FileSize[j+1]){
@@ -158,7 +165,7 @@ void bubble_sort(int dl, ULONGLONG* FileSize, unsigned long* Index) {
 
 void choose_sort(ULONGLONG* FileSize, int dl, unsigned long* Index) {
 	int i = 0, j=0, minind;
-	unsigned long min, copy_size;
+	unsigned long long min, copy_size;
 	for (i = 0; i < dl; i++) {
 		minind = i;
 		for (j = i + 1; j < dl; j++) {
@@ -172,32 +179,31 @@ void choose_sort(ULONGLONG* FileSize, int dl, unsigned long* Index) {
 	}
 }
 
-void fast_sort(ULONGLONG* FileSize, int dl, unsigned long* Index) {
-	int i = 0, j = dl - 1, mid = FileSize[dl / 2], copy_ind;
-	unsigned long copy_size;
-	do {
-		while (FileSize[i] < mid) {
+void fast_sort(ULONGLONG* FileSize, unsigned long* Index, int left, int right) {
+	int i = left, j = right;
+	unsigned long long pivot = FileSize[(left + right) / 2], tmp, tmp2;
+	while (i <= j) {
+		while (FileSize[i] < pivot) {
 			i++;
 		}
-		while (FileSize[i] > mid) {
+		while (FileSize[j] > pivot) {
 			j--;
 		}
 		if (i <= j) {
-			copy_size = FileSize[i];
+			tmp = FileSize[i];
 			FileSize[i] = FileSize[j];
-			FileSize[j] = copy_size;
-			copy_ind = Index[i];
+			FileSize[j] = tmp;
+			tmp2 = Index[i];
 			Index[i] = Index[j];
-			Index[j] = copy_ind;
-
+			Index[j] = tmp2;
 			i++;
 			j--;
 		}
-	} while (i <= j);
-	if (j > 0) {
-		fast_sort(FileSize, j + 1, Index);
 	}
-	if (i < dl) {
-		fast_sort(&FileSize[i], dl-i, Index);
+	if (left < j) {
+		fast_sort(FileSize, Index, left, j);
+	}
+	if (i < right) {
+		fast_sort(FileSize, Index, i, right);
 	}
 }
