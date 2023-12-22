@@ -55,20 +55,20 @@ int main() {
 		switch (rezhim)
 		{
 		case 1:
-			start = omp_get_wtime();
 			printf("Сортировка выбором\n");
+			start = omp_get_wtime();
 			choose_sort(copy_FileSize, k, copy_Index);
 			finish = omp_get_wtime();
 			break;
 		case 2:
-			start = omp_get_wtime();
 			printf("Сортировка пузырьком\n");
+			start = omp_get_wtime();
 			bubble_sort(k, copy_FileSize, copy_Index);
 			finish = omp_get_wtime();
 			break;
 		case 3:
-			start = omp_get_wtime();
 			printf("Быстрая сортировка\n");
+			start = omp_get_wtime();
 			fast_sort(copy_FileSize, copy_Index, 0, k-1);
 			finish = omp_get_wtime();
 			break;
@@ -82,11 +82,15 @@ int main() {
 
 		printf("_ _ _ _ _ _ _ _ Отсортировано _ _ _ _ _ _ _ _ \n");
 		printf("Время Сортировки: %5.15lf секунды \n", finish-start);
-		print_massiv(FileNames, copy_FileSize, k, Index);
+		print_massiv(FileNames, copy_FileSize, k, copy_Index);
 		printf("Можете выбрать другую сортировку) ");
 
 	} while (rezhim != 4);
 	free(FileSize);
+	for (i = 0; i < k; i++)
+	{
+		free(FileNames[i]);
+	}
 	free(FileNames);
 	free(copy_FileSize);
 	free(Index);
