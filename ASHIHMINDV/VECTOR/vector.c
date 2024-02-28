@@ -69,3 +69,43 @@ double skalPROIZV(Tvector* V1, Tvector* V2) {
 	}
 	return skproiz;
 }
+
+void read(char* infilename, Tvector* V1, Tvector* V2) {
+	int i = 0;
+	FILE* f = fopen("vector1_in.txt", "r+");
+	if (f == NULL) {
+		printf("file not found");
+		abort();
+	}
+	fscanf(f, "%d", &V1->n);
+	V1->x = (double*)malloc(sizeof(double) * V1->n);
+	for (; i < V1->n; i++) {
+		fscanf(f, "%lf", &V1->x[i]);
+	}
+	fscanf(f, "%d", &V2->n);
+	V2->x = (double*)malloc(sizeof(double) * V2->n);
+	for (i=0; i < V2->n; i++) {
+		fscanf(f, "%lf", &V2->x[i]);
+	}
+	fclose(f);
+}
+void write(Tvector* s, Tvector* m, double skalpr) {
+	int i = 0;
+	FILE* f = fopen("vector_out.txt", "w+");
+	if (f == NULL) {
+		printf("file not found");
+		abort();
+	}
+	fprintf(f, "SUMMA = ");
+	for (; i < s->n; i++) {
+		fprintf(f, "%.2lf ", s->x[i]);
+	}
+	fprintf(f, "\n");
+	fprintf(f, "RAZN = ");
+	for (i=0; i < m->n; i++) {
+		fprintf(f, "%.2lf ", m->x[i]);
+	}
+	fprintf(f, "\n");
+	fprintf(f, "skalyarnoe proizvedenie = %lf", skalpr);
+	fclose(f);
+}
