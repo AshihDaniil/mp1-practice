@@ -6,18 +6,20 @@ int main(int argc, char** argv) {
 	double skpr;
 	char* infilename, * outfilename;
 	Tvector v1, v2, s, m;
-	/*printf("Len of vector1 = ");
-	scanf("%d", &n);
-	allocete(&v1, n);
-	printf("Len of vector2 = ");
-	scanf("%d", &n);
-	allocete(&v2, n);
-	fill(&v1);
-	fill(&v2);*/
 
+	if (argc < 4) {
+		printf("Incorrect argument\n");
+		return 1;
+	}
 
+	infilename = argv[2];
+	printf("IN File Name: %s\n", infilename);
+	outfilename = argv[3];
+	printf("OUT File Name: %s\n", outfilename);
 
-	read(&v1, &v2);
+	//read("Vectors_A.txt", &v1, &v2);
+	read(infilename, &v1, &v2);
+
 	printf("vector1\n");
 	print(&v1);
 	printf("\nvector2\n");
@@ -28,7 +30,7 @@ int main(int argc, char** argv) {
 	m = razn(&v1, &v2);
 	skpr = skalPROIZV(&v1, &v2);
 
-	write(&s, &m, skpr);
+	read(outfilename, &v1, &v2);
 
 	free(v1.x);
 	free(v2.x);

@@ -70,9 +70,9 @@ double skalPROIZV(Tvector* V1, Tvector* V2) {
 	return skproiz;
 }
 
-void read(char* infilename, Tvector* V1, Tvector* V2) {
+void read(const char* infilename, Tvector* V1, Tvector* V2) {
 	int i = 0;
-	FILE* f = fopen("vector1_in.txt", "r+");
+	FILE* f = fopen(infilename, "r+");
 	if (f == NULL) {
 		printf("file not found");
 		abort();
@@ -89,9 +89,9 @@ void read(char* infilename, Tvector* V1, Tvector* V2) {
 	}
 	fclose(f);
 }
-void write(Tvector* s, Tvector* m, double skalpr) {
+void write(const char* outfilename, Tvector* s, Tvector* m, double skalpr) {
 	int i = 0;
-	FILE* f = fopen("vector_out.txt", "w+");
+	FILE* f = fopen(outfilename, "w+");
 	if (f == NULL) {
 		printf("file not found");
 		abort();
