@@ -27,10 +27,12 @@ int main(int argc, char** argv) {
 	printf("\n\n");
 
 	s = sum(&v1, &v2);
+	print(&s);
 	m = razn(&v1, &v2);
+	//print(&m);
 	skpr = skalPROIZV(&v1, &v2);
 
-	read(outfilename, &v1, &v2);
+	write(outfilename, &v1, &v2, skpr);
 
 	free(v1.x);
 	free(v2.x);
