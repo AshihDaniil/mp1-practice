@@ -7,14 +7,14 @@ int main(int argc, char** argv) {
 	char* infilename, * outfilename;
 	Tvector v1, v2, s, m;
 
-	if (argc < 4) {
+	if (argc < 3) {
 		printf("Incorrect argument\n");
 		return 1;
 	}
 
-	infilename = argv[2];
+	infilename = argv[1];
 	printf("IN File Name: %s\n", infilename);
-	outfilename = argv[3];
+	outfilename = argv[2];
 	printf("OUT File Name: %s\n", outfilename);
 
 	//read("Vectors_A.txt", &v1, &v2);
