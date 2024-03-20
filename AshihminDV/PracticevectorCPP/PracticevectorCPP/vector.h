@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <exception>
+
 
 struct TVector
 {
@@ -14,7 +16,7 @@ struct TVector
 	TVector operator+ (const TVector&);
 	TVector operator- (const TVector&);
 	double operator* (const TVector&);
-	TVector& operator= (const TVector&);
+	const TVector& operator= (const TVector&);
 	friend std::ofstream& operator<<(std::ofstream& out, const TVector& V)
 	{
 		out << "Vector: ";

@@ -1,6 +1,5 @@
 #include "vector.h"
-#include <exception>
-#include <iostream>
+
 
 
 TVector::TVector()
@@ -91,7 +90,7 @@ std::ostream& operator<<(std::ostream& out, const TVector& v)
 	return out;
 }
 
-TVector& TVector::operator= (const TVector& v)
+const TVector& TVector::operator= (const TVector& v)
 {
 	std::cout << "TVector& TVector::operator= (const TVector& v)" << std::endl;
 	n = v.n;
