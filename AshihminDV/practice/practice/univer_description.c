@@ -26,3 +26,20 @@ void print_univ(Univer* u)
 	print_uNapr(&u->napr);
 
 }
+
+void list_of_univer(Univer* u, int i)
+{
+	printf("%d - Университет: %s", i+1, u->univer_name);
+}
+
+void univer_info(Univer* u)
+{
+	printf("%s", u->univer_name);
+	printf("%s\n", u->univer_adres);
+	printf("%s\n", u->univer_info);
+}
+
+void univer_napr(Univer* u)
+{
+	print_ListNapr(&u->napr);
+}

@@ -14,3 +14,4 @@ typedef struct
 void fill(const FILE* f, uNapr* napr);
 
 void print_univ(uNapr* napr);
+void print_ListNapr(uNapr* napr);

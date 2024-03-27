@@ -28,3 +28,11 @@ void print_uNapr(uNapr* napr)
 		printf("Стоимость Договорного обучения: %d\n\n", napr->cost[i]);
 	}
 }
+void print_ListNapr(uNapr* napr)
+{
+	int i = 0;
+	for (i = 0; i < 2; i++)
+	{
+		printf("%d - %s",i+1, napr->name[i]);
+	}
+}
