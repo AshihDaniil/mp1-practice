@@ -18,24 +18,18 @@
     <ClCompile Include="main.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="univer_description.c">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="napr.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="funk.c">
+    <ClCompile Include="univer_description.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="univer_description.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="napr.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="funk.h">
+    <ClInclude Include="univer_description.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
