@@ -3,10 +3,8 @@
 void fill_napr(const FILE* f, uNapr* napr) 
 {
 	napr->name = (char*)malloc(sizeof(char) * BUFFER);
-	napr->info = (char*)malloc(sizeof(char) * BUFFER);
 
 	fgets(napr->name, BUFFER, f);
-	fgets(napr->info, BUFFER, f);
 	fscanf(f, "%d", &(napr->bally_norm));
 	fscanf(f, "%d", &(napr->bally_vech));
 	fscanf(f, "%d", &(napr->bally_zaochn));

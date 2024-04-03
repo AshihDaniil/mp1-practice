@@ -55,7 +55,6 @@ void univer_napr(Univer* u)
 void univer_napr_info(Univer* u, int numbNapr)
 {
 	printf("Напрваление: %s", u->napr[numbNapr].name);
-	printf("Описание: %s", u->napr[numbNapr].info);
 	if(u->napr[numbNapr].bally_norm!=-1){
 		printf("Балл очной формы обучения: %d\n", u->napr[numbNapr].bally_norm);
 	}

@@ -24,12 +24,24 @@
     <ClCompile Include="univer_description.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="address.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="universityLib.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="napr.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="univer_description.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="address.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="universityLib.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

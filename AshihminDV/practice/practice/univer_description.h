@@ -1,16 +1,17 @@
 #pragma once
 #include "napr.h"
+#include "address.h"
 
 typedef struct
 {
-
 	char* univer_name;
-	char* univer_adres;
 	char* univer_info;
 	int count_napr;
+	Address address;
 	uNapr* napr;
-
 } Univer;
+
+
 
 void fill_univ(const char* infilename, Univer* u);
 void print_univ(Univer* u, int i);

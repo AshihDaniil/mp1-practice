@@ -5,6 +5,7 @@ int main(int argc, char** argv)
 	char* infilename[2];
 	Univer u[2];
 	int i = 0, k = argc - 1, button = 1, n_u = 0, n_u_p = 0;
+
 	setlocale(LC_ALL, "Rus");
 
 	if (argc < 3)
@@ -92,7 +93,9 @@ int main(int argc, char** argv)
 		free(u[i].univer_name);
 		free(u[i].univer_info);
 		free(u[i].univer_adres);
+		free(u[i].napr->name);
 		free(u[i].napr);
+		
 	}
 	return 0;
 
