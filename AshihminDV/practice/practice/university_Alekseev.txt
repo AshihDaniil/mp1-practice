@@ -1,14 +1,42 @@
 Nizhny Novgorod State Technical University named after R.E. Alekseev. R.E. Alekseev
-ul. Minina, 24, Nizhny Novgorod
+Nizhny Novgorod
+ul. Minina
+24
+84327
 Nizhny Novgorod State Technical University named after R. E. Alekseev. R.E. Alekseev Nizhny Novgorod State Technical University, NSTU is a technical institution of higher education in Nizhny Novgorod. In 2007, the university was named after R. E. Alekseev. In April 2017, it became one of the regional core universities.
-2
-Math
-222
-111
-33
-22222
-Mechanics and mathematical modelling
-321
-333
-54
-190000
+7
+Applied mathematics and informatics
+215
+-1
+-1
+132400
+Informatics and computer science
+220
+-1
+202
+151850
+Information systems and technologies
+128
+-1
+-1
+151850
+Radio engineering
+163
+-1
+150
+151850
+Electronics and nanoelectronics
+169
+-1
+-1
+151850
+Nuclear power engineering and thermal physics
+198
+-1
+-1
+182350
+Oil and gas business
+185
+-1
+-1
+182350

@@ -11,10 +11,7 @@ typedef struct
 	uNapr* napr;
 } Univer;
 
-
-
-void fill_univ(const char* infilename, Univer* u);
-void print_univ(Univer* u, int i);
+void fill_univer(const FILE* f, Univer* u);
 void univer_info(Univer* u);
 void univer_napr(Univer* u);
 void univer_napr_info(Univer* u, int numbNapr);

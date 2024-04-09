@@ -1,26 +1,26 @@
 #include "univer_description.h"
 
-void fill_univ(const char* infilename, Univer* u)
+void fill_univer(const FILE* f, Univer* u)
 {
 	int i = 0;
 	char* trash[100];
 
-	FILE* f = fopen(infilename, "r+");
-	if (f == NULL) {
-		printf("file not found");
-		abort();
-	}
-
 	u->univer_name = (char*)malloc(sizeof(char) * BUFFER);
-	u->univer_adres = (char*)malloc(sizeof(char) * BUFFER);
 	u->univer_info = (char*)malloc(sizeof(char) * BUFFER2);
 
 	fgets(u->univer_name, BUFFER, f);
-	fgets(u->univer_adres, BUFFER, f);
+
+	allocate_adress(&u->address);
+	
+	fgets(u->address.town, BUFFER, f);
+	fgets(u->address.street, BUFFER, f);
+	fscanf(f, "%d", &u->address.house);
+	fscanf(f, "%d", &u->address.postcode);
+	fgets(trash, 100, f);
 	fgets(u->univer_info, BUFFER2, f);
 	fscanf(f, "%d", &(u->count_napr));
-	fgets(trash, 100, f);
 
+	fgets(trash, 100, f);
 	u->napr = (uNapr*)malloc(sizeof(uNapr) * u->count_napr);
 
 	for (i = 0; i < u->count_napr; i++)
@@ -31,15 +31,10 @@ void fill_univ(const char* infilename, Univer* u)
 	fclose(f);
 }
 
-void print_univ(Univer* u, int i)
-{
-	printf("%d - ВУЗ: %s", i+1, u->univer_name);
-}
-
 void univer_info(Univer* u)
 {
 	printf("Название: %s", u->univer_name);
-	printf("Адрес: %s", u->univer_adres);
+	printf("Город: %sУлица: %sДом:%d\nПочтовый Индекс: %d\n", u->address.town, u->address.street, u->address.house, u->address.postcode);
 	printf("Описание: %s", u->univer_info);
 }
 
@@ -94,18 +89,16 @@ void min_conc_po_vyzy(Univer* u)
 	}
 	printf("Минимальный балл очной формы обучения: %d\n", min_ochn);
 	printf("Название направления: %s\n", *name_ochn);
-	printf("Минимальный балл вечерней формы обучения: %d\n", min_vech);
-	printf("Название направления: %s\n", *name_vech);
-	printf("Минимальный балл заочной формы обучения: %d\n", min_zaochn);
-	printf("Название направления: %s\n\n", *name_zaochn);
-
-}
-
-/*void min_conc_po_vyzam(Univer* u)
-{
-	int i = 0,j=0, min_ball = 999;
-	char* univ_name[100], * napr_name[100];
-	for (j; j < 2; j++) {
-
+	if (min_vech == 999) {
+		printf("Минимальный балл вечерней формы обучения: Нет данной формы обучения\n\n");
 	}
-}*/
+	else {
+		printf("Минимальный балл вечерней формы обучения: %d\n", min_vech);
+		printf("Название направления: %s", *name_vech);
+	}
+	if (min_zaochn != 999) {
+		printf("Минимальный балл заочной формы обучения: %d\n", min_zaochn);
+		printf("Название направления: %s", *name_zaochn);
+	}
+	else { printf("Минимальный балл заочной формы обучения: Нет данной формы обучения\n\n"); }
+}

@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include<locale.h>
-#define BUFFER 256
-#define BUFFER2 512
+#include"address.h"
+
+#define BUFFER2 1024
 
 typedef struct
 {
