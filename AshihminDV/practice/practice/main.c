@@ -6,7 +6,8 @@ int main(int argc, char** argv)
 	char* infilename[4], *name[BUFFER];
 	UniversityLib unLib;
 
-	int i = 0, k = argc - 1, button = 1, n_u = 0, n_u_p = 0, j;
+	int i = 0, /*k = argc - 1,*/ button = 1, n_u = 0, n_u_p = 0, j;
+	int k = 1;
 
 	setlocale(LC_ALL, "Rus");
 
@@ -110,6 +111,8 @@ int main(int argc, char** argv)
 		case 5:
 			printf("Минимальный балл по ВУЗам: \n\n");
 			min_conc_po_vyzam(&unLib);
+			break;
+		case 0:
 			break;
 		default:
 			printf("Некорректный ввод(\n");

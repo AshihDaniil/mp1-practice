@@ -82,6 +82,11 @@ void min_conc_po_vyzam(UniversityLib* unLib)
 	else{ printf("Минимальный балл заочной формы обучения: Нет данной формы обучения\n\n"); }
 }
 
+
+// string.h
+// strlen
+// strcmp
+
 void find_napr(UniversityLib* unLib, char* name)
 {
 	int cout_in_name = 0, count_sovp=0, i, j, flag=0;

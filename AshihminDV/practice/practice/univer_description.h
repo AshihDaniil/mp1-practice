@@ -6,9 +6,11 @@ typedef struct
 {
 	char* univer_name;
 	char* univer_info;
-	int count_napr;
+	
 	Address address;
+
 	uNapr* napr;
+	int count_napr;
 } Univer;
 
 void fill_univer(const FILE* f, Univer* u);
