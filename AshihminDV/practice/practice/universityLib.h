@@ -12,4 +12,6 @@ void allocate(UniversityLib* unLib, int count);
 void fill_univers(UniversityLib* unLib, const char** infilename);
 void print_univers(UniversityLib* unLib);
 void min_conc_po_vyzam(UniversityLib* unLib);
-void find_napr(UniversityLib* unLib, char* name);
+//void find_napr(UniversityLib* unLib, UniversityLib* found_univ, char* name);
+UniversityLib find_napr(UniversityLib* unLib, UniversityLib* found_univ, char* name);
+void free_univ(UniversityLib* unLib);

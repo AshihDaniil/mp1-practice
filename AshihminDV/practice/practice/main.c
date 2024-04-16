@@ -3,19 +3,21 @@
 
 int main(int argc, char** argv)
 {
-	char* infilename[4], *name[BUFFER];
+	char* infilename[1], *name[BUFFER];
 	UniversityLib unLib;
+	UniversityLib founded_univ;
 
-	int i = 0, /*k = argc - 1,*/ button = 1, n_u = 0, n_u_p = 0, j;
-	int k = 1;
+	int i = 0, k = argc - 1, button = 1, n_u = 0, n_u_p = 0, j;
 
 	setlocale(LC_ALL, "Rus");
 
-	if (argc < 5)
+	if (argc < 2)
 	{
 		printf("Incorrect argument\n");
 		return 999;
 	}
+
+	
 
 	allocate(&unLib, k);
 
@@ -36,7 +38,7 @@ int main(int argc, char** argv)
 		scanf("%d", &button);
 		switch (button)
 		{
-		case 1:
+		case 1: //work
 			printf("Введите номер ВУЗа, чтобы узнать о нем больше информации\n\n");
 			print_univers(&unLib);
 			do {
@@ -51,7 +53,7 @@ int main(int argc, char** argv)
 				}
 			} while (n_u != 0);
 			break;
-		case 2:
+		case 2: //work
 			printf("Подробнее о специальностях ВУЗа\n\n");
 			do 
 			{
@@ -81,14 +83,29 @@ int main(int argc, char** argv)
 				}
 			} while (n_u != 0);
 			break;
-		case 3:
+		case 3: //work but need to up
 			gets(name);
 			do {
 				printf("Поиск направления по названию(Введите название направления, для выхода в меню введите return)\n");
 				gets(name);
 				printf("\n");
 				if(strcmp(name, "return") != 0){
-					find_napr(&unLib, name);
+					//find_napr(&unLib, &founded_univ, name);
+					founded_univ = find_napr(&unLib, &founded_univ, name);
+					if (founded_univ.university == NULL) {
+						printf("Совпадений не найдено\n");
+					}
+					else {
+						printf("Найденые направления:\n");
+						for (i = 0; i < founded_univ.count; i++)
+						{
+							printf("ВУЗ: %s", founded_univ.university[i].univer_name);
+							for (j = 0; j < founded_univ.university[i].count_napr; j++) {
+								univer_napr_info(&founded_univ.university[i], j);
+							}
+							printf("\n");
+						}
+					}
 				}
 			} while (strcmp(name, "return") != 0);
 			break;
@@ -120,23 +137,8 @@ int main(int argc, char** argv)
 		}
 	}while (button != 0);
 
-	if (unLib.university != NULL)
-	{
-		for (i = 0; i < k; i++)
-		{
-			free(unLib.university[i].univer_name);
-			free(unLib.university[i].univer_info);
-			free(unLib.university[i].univer_name);
-			free(unLib.university[i].address.town);
-			free(unLib.university[i].address.street);
-			for (j = 0; j < unLib.university[i].count_napr; j++)
-			{
-				free(unLib.university[i].napr[j].name);
-			}
-			free(unLib.university[i].napr);
-			free(unLib.university);
-		}
-	}
+	free_univ(&unLib);
+	free_univ(&founded_univ);
 	return 0;
 
 }

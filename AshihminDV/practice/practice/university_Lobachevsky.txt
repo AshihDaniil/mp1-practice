@@ -3,7 +3,18 @@ Nizhny Novgorod
 Gagarina ave.
 23 603022
 Lobachevsky University was founded on 17 January 1916 as one of the three People's Universities of Russia and became the first higher education institution in Nizhny Novgorod. In official rankings, the university is consistently among the top ten universities in Russia, being the first university in the Volga Federal District.
-2
+9
+Journalism
+3
+OCHNAYA
+301
+170000
+ZAOCHNAY
+110
+80000
+VECHERNYA
+110
+80000
 Maths
 1
 OCHNAYA
@@ -17,47 +28,42 @@ OCHNAYA
 ZAOCHNAY
 190
 129999
-
-
 Fundamental informatics and information technologies
 1
+OCHNAYA
 254
--1
--1
 200000
 Applied mathematics and informatics
 2
+OCHNAYA
 234
--1
-218
-160000
+190000
+VECHERNYA
+178
+100000
 Fundamental mathematics and mechanics
 1
+OCHNAYA
 202
--1
--1
 140000
 Applied Informatics
 2
+OCHNAYA
 244
--1
+190000
+VECHERNYA
 178
-179999
+100000
 Software engineering
 1
+OCHNAYA
 250
--1
--1
 210000
 Philology
 2
+OCHNAYA
 248
--1
-230
 250000
-Journalism
-2
-301
--1
-242
-255000
+ZAOCHNAY
+230
+210000

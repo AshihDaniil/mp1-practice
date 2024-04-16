@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="address.c" />
+    <ClCompile Include="EduFormInfo.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="napr.c" />
     <ClCompile Include="universityLib.c" />
@@ -135,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="address.h" />
+    <ClInclude Include="EdForm.h" />
+    <ClInclude Include="EduFormInfo.h" />
     <ClInclude Include="napr.h" />
     <ClInclude Include="universityLib.h" />
     <ClInclude Include="univer_description.h" />
