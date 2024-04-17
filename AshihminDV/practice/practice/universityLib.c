@@ -12,8 +12,7 @@ void allocate(UniversityLib* unLib, int count)
 void fill_univers(UniversityLib* unLib, const char** infilename)
 {
 	int i = 0;
-	char* trash[100];
-	for (i=0; i < unLib->count; i++)
+	for (i = 0; i < unLib->count; i++)
 	{	
 		FILE* f = fopen(infilename[i], "r+");
 		if (f == NULL) {
@@ -35,8 +34,9 @@ void print_univers(UniversityLib* unLib)
 
 void min_conc_po_vyzam(UniversityLib* unLib)
 {
-	int min_ochn = unLib->university[0].napr[0].educational_forms[0].score, min_vech = unLib->university[0].napr[0].educational_forms[0].score, min_zaochn = unLib->university[0].napr[0].educational_forms[0].score;
-	int i, j, nforms;
+	int min_ochn = unLib->university[0].napr[0].educational_forms[0].score,
+		min_vech = unLib->university[0].napr[0].educational_forms[0].score,
+		min_zaochn = unLib->university[0].napr[0].educational_forms[0].score;
 	char* name_univ_ochn[100], * name_univ_vech[100], * name_univ_zaochn[100];
 	char* name_ochn[100], * name_vech[100], * name_zaochn[100];
 	*name_ochn = unLib->university[0].napr[0].name;
@@ -46,13 +46,18 @@ void min_conc_po_vyzam(UniversityLib* unLib)
 	*name_univ_vech = unLib->university[0].univer_name;
 	*name_univ_zaochn = unLib->university[0].univer_name;
 
+	int i, j, nforms;
+	int idx_ochn = 0, idx_zaocn = 0, idx_vech = 0;
+	int idx_min_ochn_univ = 0, idx_min_zaochn_univ = 0, idx_min_vech_univ = 0;
+
 	for (i = 0; i < unLib->count; i++) 
 	{
 		for (j = 0; j < unLib->university[i].count_napr; j++)
 		{
 			for (nforms = 0; nforms < unLib->university[i].napr[j].nforms; nforms++)
 			{
-				if (unLib->university[i].napr[j].educational_forms[nforms].form_id == 1)
+				
+				/*if (unLib->university[i].napr[j].educational_forms[nforms].form_id == 1) 
 				{
 					if (unLib->university[i].napr[j].educational_forms[nforms].score < min_ochn) {
 						min_ochn = unLib->university[i].napr[j].educational_forms[nforms].score;
@@ -75,7 +80,7 @@ void min_conc_po_vyzam(UniversityLib* unLib)
 						*name_vech = unLib->university[i].napr[j].name;
 						*name_univ_vech = unLib->university[i].univer_name;
 					}
-				}
+				}*/
 			}
 		}
 	}
@@ -91,6 +96,8 @@ void min_conc_po_vyzam(UniversityLib* unLib)
 
 }
 
+
+
 UniversityLib find_napr(UniversityLib* unLib, UniversityLib* found_univ, char* name)
 {
 	int len, i, j, nf = 0, count_univ = 0, count_napr, n_univ=0;
@@ -100,18 +107,6 @@ UniversityLib find_napr(UniversityLib* unLib, UniversityLib* found_univ, char* n
 	len = strlen(name);
 	name[len] = '\n';
 	name[len + 1] = '\0';
-
-	/*for (j = 0; j < unLib->count; j++) {
-		for (i = 0; i < unLib->university[j].count_napr; i++) {
-			if (strcmp(name, unLib->university[j].napr[i].name) == 0)
-			{
-				printf("ÂÓÇ: %s", unLib->university[j].univer_name);
-				univer_napr_info(&unLib->university[j], i);
-				printf("\n");
-				flag++;
-			}
-		}
-	}*/
 	for (j = 0; j < unLib->count; j++) {
 		for (i = 0; i < unLib->university[j].count_napr; i++) {
 			if (strcmp(name, unLib->university[j].napr[i].name) == 0)
@@ -122,7 +117,6 @@ UniversityLib find_napr(UniversityLib* unLib, UniversityLib* found_univ, char* n
 			}
 		}
 	}
-	//printf("%d\n", count_univ);
 
 	if (count_univ == 0)
 	{
@@ -169,13 +163,17 @@ UniversityLib find_napr(UniversityLib* unLib, UniversityLib* found_univ, char* n
 				found.university[n_univ].napr[count_napr].name = (char*)malloc(sizeof(char) * BUFFER);
 				found.university[n_univ].napr[count_napr].name = unLib->university[j].napr[i].name;
 				found.university[n_univ].napr[count_napr].nforms = unLib->university[j].napr[i].nforms;
-				found.university[n_univ].napr[count_napr].educational_forms = (EducationalFormInfo*)malloc(sizeof(EducationalFormInfo) * found.university[n_univ].napr[count_napr].nforms);
+				found.university[n_univ].napr[count_napr].educational_forms =
+					(EducationalFormInfo*)malloc(sizeof(EducationalFormInfo) * found.university[n_univ].napr[count_napr].nforms);
 				
 				for (nf = 0; nf < found.university[n_univ].napr[count_napr].nforms; nf++)
 				{
-					found.university[n_univ].napr[count_napr].educational_forms[nf].cost = unLib->university[j].napr[i].educational_forms[nf].cost;
-					found.university[n_univ].napr[count_napr].educational_forms[nf].score = unLib->university[j].napr[i].educational_forms[nf].score;
-					found.university[n_univ].napr[count_napr].educational_forms[nf].form_id = unLib->university[j].napr[i].educational_forms[nf].form_id;
+					found.university[n_univ].napr[count_napr].educational_forms[nf].cost =
+						unLib->university[j].napr[i].educational_forms[nf].cost;
+					found.university[n_univ].napr[count_napr].educational_forms[nf].score =
+						unLib->university[j].napr[i].educational_forms[nf].score;
+					found.university[n_univ].napr[count_napr].educational_forms[nf].form_id =
+						unLib->university[j].napr[i].educational_forms[nf].form_id;
 				}
 
 				if (count_univ == 0)
@@ -196,22 +194,24 @@ UniversityLib find_napr(UniversityLib* unLib, UniversityLib* found_univ, char* n
 
 void free_univ(UniversityLib* unLib)
 {
-	int i, j;
+	int i, j, ij;
 	if (unLib->university != NULL)
 	{
 		for (i = 0; i < unLib->count; i++)
 		{
 			free(unLib->university[i].univer_name);
 			free(unLib->university[i].univer_info);
-			free(unLib->university[i].univer_name);
 			free(unLib->university[i].address.town);
 			free(unLib->university[i].address.street);
 			for (j = 0; j < unLib->university[i].count_napr; j++)
 			{
 				free(unLib->university[i].napr[j].name);
+				free(unLib->university[i].napr[j].educational_forms);
 			}
+			
 			free(unLib->university[i].napr);
 			free(unLib->university);
+
 		}
 	}
 }

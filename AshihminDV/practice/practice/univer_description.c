@@ -73,10 +73,15 @@ void univer_napr_info(Univer* u, int numbNapr)
 	}
 }
 
+
+
+
+
 void min_conc_po_vyzy(Univer* u)
 {
-	int min_ochn = u->napr[0].educational_forms[0].score, min_vech = u->napr[0].educational_forms[0].score, min_zaochn = u->napr[0].educational_forms[0].score, i;
-	int j;
+	int min_ochn = u->napr[0].educational_forms[0].score, min_vech = u->napr[0].educational_forms[0].score,
+		min_zaochn = u->napr[0].educational_forms[0].score, i;
+	int j, idx_ochn, idx_zaochn;
 	char* name_ochn[100], * name_vech[100], * name_zaochn[100];
 	*name_ochn = u->napr[0].name;
 	*name_vech = u->napr[0].name;

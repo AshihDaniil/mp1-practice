@@ -15,3 +15,12 @@ void fill_napr(const FILE* f, uNapr* napr)
 		fill_EducationalFormInfo(f, &napr->educational_forms[i]);
 	}
 }
+int find_min(uNapr* napr, int min_score, int idx_min,int idx,  int ed_fo, int* idx_min_univ, int idx_univ)
+{
+	if (napr->educational_forms[ed_fo].score < min_score)
+	{
+		idx_min_univ = idx_univ;
+		return idx;
+	}
+	return idx_min;
+}
