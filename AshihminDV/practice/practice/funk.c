@@ -55,7 +55,7 @@ void more_about_napr(UniversityLib* unLib, int k)
 	} while (n_u != 0);
 }
 
-void find_napravl(UniversityLib* unLib)
+UniversityLib find_napravl(UniversityLib* unLib)
 {
 	char* name[BUFFER];
 	UniversityLib founded_univ;
@@ -84,6 +84,7 @@ void find_napravl(UniversityLib* unLib)
 			}
 		}
 	} while (strcmp(name, "return") != 0);
+	return founded_univ;
 }
 void min_vyz(UniversityLib* unLib, int k)
 {

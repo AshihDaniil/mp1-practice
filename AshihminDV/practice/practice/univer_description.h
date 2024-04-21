@@ -19,4 +19,3 @@ void univer_napr(Univer* u);
 void univer_napr_info(Univer* u, int numbNapr);
 void min_conc_po_vyzy(Univer* u);
 void min_conc_po_vyzam(Univer* u);
-//int find_min(Univer* u, int min_score, int idx, int ed_fo);

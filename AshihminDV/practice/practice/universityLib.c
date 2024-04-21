@@ -35,20 +35,13 @@ void print_univers(UniversityLib* unLib)
 void min_conc_po_vyzam(UniversityLib* unLib)
 {
 	int min_ochn = unLib->university[0].napr[0].educational_forms[0].score,
-		min_vech = unLib->university[0].napr[0].educational_forms[0].score,
-		min_zaochn = unLib->university[0].napr[0].educational_forms[0].score;
-	char* name_univ_ochn[100], * name_univ_vech[100], * name_univ_zaochn[100];
-	char* name_ochn[100], * name_vech[100], * name_zaochn[100];
-	*name_ochn = unLib->university[0].napr[0].name;
-	*name_vech = unLib->university[0].napr[0].name;
-	*name_zaochn = unLib->university[0].napr[0].name;
-	*name_univ_ochn = unLib->university[0].univer_name;
-	*name_univ_vech = unLib->university[0].univer_name;
-	*name_univ_zaochn = unLib->university[0].univer_name;
+		min_vech = unLib->university[0].napr[0].educational_forms[1].score,
+		min_zaochn = unLib->university[0].napr[0].educational_forms[2].score;
 
 	int i, j, nforms;
-	int idx_ochn = 0, idx_zaocn = 0, idx_vech = 0;
-	int idx_min_ochn_univ = 0, idx_min_zaochn_univ = 0, idx_min_vech_univ = 0;
+	int idx_ochn = 0, idx_zaochn = 0, idx_vech = 0;
+	int idx_ochn_univ = 0, idx_zaochn_univ = 0, idx_vech_univ = 0;
+	int idx_ocnh_nforms = 0, idx_zaocnh_nforms = 1, idx_vech_nforms = 2;
 
 	for (i = 0; i < unLib->count; i++) 
 	{
@@ -56,44 +49,24 @@ void min_conc_po_vyzam(UniversityLib* unLib)
 		{
 			for (nforms = 0; nforms < unLib->university[i].napr[j].nforms; nforms++)
 			{
-				
-				/*if (unLib->university[i].napr[j].educational_forms[nforms].form_id == 1) 
-				{
-					if (unLib->university[i].napr[j].educational_forms[nforms].score < min_ochn) {
-						min_ochn = unLib->university[i].napr[j].educational_forms[nforms].score;
-						*name_ochn = unLib->university[i].napr[j].name;
-						*name_univ_ochn = unLib->university[i].univer_name;
-					}
-				}
-				if (unLib->university[i].napr[j].educational_forms[nforms].form_id == 2)
-				{
-					if (unLib->university[i].napr[j].educational_forms[nforms].score < min_ochn) {
-						min_zaochn = unLib->university[i].napr[j].educational_forms[nforms].score;
-						*name_zaochn = unLib->university[i].napr[j].name;
-						*name_univ_zaochn = unLib->university[i].univer_name;
-					}
-				}
-				if (unLib->university[i].napr[j].educational_forms[nforms].form_id == 3)
-				{
-					if (unLib->university[i].napr[j].educational_forms[nforms].score < min_ochn) {
-						min_vech = unLib->university[i].napr[j].educational_forms[nforms].score;
-						*name_vech = unLib->university[i].napr[j].name;
-						*name_univ_vech = unLib->university[i].univer_name;
-					}
-				}*/
+				idx_ochn = find_min(&unLib->university[i].napr[j].educational_forms[nforms], unLib->university[idx_ochn_univ].napr[idx_ochn].educational_forms[idx_ocnh_nforms].score,
+					&idx_ochn_univ, idx_ochn, &i, j, 1, &nforms, &idx_ocnh_nforms);
+				idx_zaochn = find_min(&unLib->university[i].napr[j].educational_forms[nforms], unLib->university[idx_zaochn_univ].napr[idx_zaochn].educational_forms[idx_zaocnh_nforms].score, 
+					&idx_zaochn_univ, idx_zaochn, &i, j, 2, &nforms, &idx_zaocnh_nforms);
+				idx_vech = find_min(&unLib->university[i].napr[j].educational_forms[nforms], unLib->university[idx_vech_univ].napr[idx_vech].educational_forms[idx_vech_nforms].score, 
+					&idx_vech_univ, idx_vech, &i, j, 3, &nforms, &idx_vech_nforms);
 			}
 		}
 	}
-	printf("Минимальный балл очной формы обучения: %d\n", min_ochn);
-	printf("Название направления: %s", *name_ochn);
-	printf("ВУЗ: %s\n", *name_univ_ochn);
-	printf("Минимальный балл вечерней формы обучения: %d\n", min_vech);
-	printf("Название направления: %s", *name_vech);
-	printf("ВУЗ: %s\n", *name_univ_vech);
-	printf("Минимальный балл заочной формы обучения: %d\n", min_zaochn);
-	printf("Название направления: %s", *name_zaochn);
-	printf("ВУЗ: %s\n", *name_univ_zaochn);
-
+	printf("Минимальный балл очной формы обучения: %d\n", unLib->university[idx_ochn_univ].napr[idx_ochn].educational_forms[idx_ocnh_nforms].score);
+	printf("Название направления: %s", unLib->university[idx_ochn_univ].napr[idx_ochn].name);
+	printf("ВУЗ: %s", unLib->university[idx_ochn_univ].univer_name);
+	printf("Минимальный балл заочной формы обучения: %d\n", unLib->university[idx_zaochn_univ].napr[idx_zaochn].educational_forms[idx_zaocnh_nforms].score);
+	printf("Название направления: %s", unLib->university[idx_zaochn_univ].napr[idx_zaochn].name);
+	printf("ВУЗ: %s", unLib->university[idx_zaochn_univ].univer_name);
+	printf("Минимальный балл вечерней формы обучения: %d\n", unLib->university[idx_vech_univ].napr[idx_vech].educational_forms[idx_vech_nforms].score);
+	printf("Название направления: %s", unLib->university[idx_vech_univ].napr[idx_vech].name);
+	printf("ВУЗ: %s\n", unLib->university[idx_vech_univ].univer_name);
 }
 
 
@@ -192,12 +165,12 @@ UniversityLib find_napr(UniversityLib* unLib, UniversityLib* found_univ, char* n
 	return found;
 }
 
-void free_univ(UniversityLib* unLib)
+void free_univ(UniversityLib* unLib, int rez)
 {
-	int i, j, ij;
+	int i, j, k = unLib->count;
 	if (unLib->university != NULL)
 	{
-		for (i = 0; i < unLib->count; i++)
+		for (i = 0; i < k; i++)
 		{
 			free(unLib->university[i].univer_name);
 			free(unLib->university[i].univer_info);
@@ -208,10 +181,9 @@ void free_univ(UniversityLib* unLib)
 				free(unLib->university[i].napr[j].name);
 				free(unLib->university[i].napr[j].educational_forms);
 			}
-			
 			free(unLib->university[i].napr);
-			free(unLib->university);
-
 		}
+		free(unLib->university);
 	}
+	
 }

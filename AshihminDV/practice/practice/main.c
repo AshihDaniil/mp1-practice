@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv)
 {
-	char* infilename[1], *name[BUFFER];
+	char* infilename[4], *name[BUFFER];
 	UniversityLib unLib;
 	UniversityLib founded_univ;
 
@@ -20,6 +20,7 @@ int main(int argc, char** argv)
 	
 
 	allocate(&unLib, k);
+	allocate(&founded_univ, 0);
 
 	for (i = 0; i < k; i++) {
 		infilename[i] = argv[i + 1];
@@ -45,7 +46,8 @@ int main(int argc, char** argv)
 			more_about_napr(&unLib, k);
 			break;
 		case 3:
-			find_napravl(&unLib);
+			founded_univ = find_napravl(&unLib);
+			
 			break;
 		case 4:
 			min_vyz(&unLib, k);
@@ -62,8 +64,24 @@ int main(int argc, char** argv)
 		}
 	}while (button != 0);
 
-	free_univ(&unLib);
-	free_univ(&founded_univ);
+	/*if (founded_univ.university != NULL)
+	{
+		for (i = 0; i < founded_univ.count; i++)
+		{
+			free(founded_univ.university[i].univer_name);
+			for (j = 0; j < founded_univ.university[i].count_napr; j++)
+			{
+				free(founded_univ.university[i].napr[j].name);
+				free(founded_univ.university[i].napr[j].educational_forms);
+			}
+			free(founded_univ.university[i].napr);
+		}
+		free(founded_univ.university);
+	}*/
+	printf("GG");
+	free_univ(&unLib, 0);
+	
+
 	return 0;
 
 }

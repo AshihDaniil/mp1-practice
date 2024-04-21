@@ -73,49 +73,35 @@ void univer_napr_info(Univer* u, int numbNapr)
 	}
 }
 
-
-
-
-
 void min_conc_po_vyzy(Univer* u)
 {
-	int min_ochn = u->napr[0].educational_forms[0].score, min_vech = u->napr[0].educational_forms[0].score,
-		min_zaochn = u->napr[0].educational_forms[0].score, i;
-	int j, idx_ochn, idx_zaochn;
+	int min_ochn = u->napr[0].educational_forms[0].score, min_vech = u->napr[0].educational_forms[1].score,
+		min_zaochn = u->napr[0].educational_forms[2].score, i;
+	int j, idx_ochn = 0, idx_zaochn = 0, idx_vech=0;
+	int idx_ocnh_nforms = 0, idx_zaocnh_nforms = 1, idx_vech_nforms = 2;
+
 	char* name_ochn[100], * name_vech[100], * name_zaochn[100];
 	*name_ochn = u->napr[0].name;
 	*name_vech = u->napr[0].name;
 	*name_zaochn = u->napr[0].name;
 
+	int idx_ochn_univ = 0;
+
 
 	for (i = 1; i < u->count_napr; i++)
 	{
 		for (j = 0; j < u->napr[i].nforms; j++) {
-			if (u->napr[i].educational_forms[j].form_id == 1) {
-				if (u->napr[i].educational_forms[j].score < min_ochn) { 
-					min_ochn = u->napr[i].educational_forms[j].score; 
-					*name_ochn = u->napr[i].name;
-				}
-			}
-			if (u->napr[i].educational_forms[j].form_id == 2) {
-				if (u->napr[i].educational_forms[j].score < min_zaochn) { 
-					min_zaochn = u->napr[i].educational_forms[j].score;
-					*name_zaochn = u->napr[i].name;
-				}
-			}
-			if (u->napr[i].educational_forms[j].form_id == 3) {
-				if (u->napr[i].educational_forms[j].score < min_vech) { 
-					min_vech = u->napr[i].educational_forms[j].score;
-					*name_vech = u->napr[i].name;
-				}
-			}
+
+			idx_ochn = find_min(&u->napr[i].educational_forms[j], u->napr[idx_ochn].educational_forms[0].score, &idx_ochn_univ, idx_ochn, &i, i, 1, &j, &idx_ocnh_nforms);
+			idx_zaochn = find_min(&u->napr[i].educational_forms[j], u->napr[idx_zaochn].educational_forms[1].score, &idx_ochn_univ, idx_zaochn, &i, i, 2, &j, &idx_zaocnh_nforms);
+			idx_vech = find_min(&u->napr[i].educational_forms[j], u->napr[idx_vech].educational_forms[2].score, &idx_ochn_univ, idx_vech, &i, i, 3, &j, &idx_vech_nforms);
 		}
 	}
-	printf("Минимальный балл очной формы обучения: %d\n", min_ochn);
-	printf("Название направления: %s\n", *name_ochn);
-	printf("Минимальный балл заочной формы обучения: %d\n", min_zaochn);
-	printf("Название направления: %s\n", *name_zaochn);
-	printf("Минимальный балл вечерней формы обучения: %d\n", min_vech);
-	printf("Название направления: %s\n", *name_vech);
-	
+
+	printf("Минимальный балл очной формы обучения: %d\n", u->napr[idx_ochn].educational_forms[idx_ocnh_nforms].score);
+	printf("Название направления: %s\n", u->napr[idx_ochn].name);
+	printf("Минимальный балл заочной формы обучения: %d\n", u->napr[idx_zaochn].educational_forms[idx_zaocnh_nforms].score);
+	printf("Название направления: %s\n", u->napr[idx_zaochn].name);
+	printf("Минимальный балл вечерней формы обучения: %d\n", u->napr[idx_vech].educational_forms[idx_vech_nforms].score);
+	printf("Название направления: %s\n", u->napr[idx_vech].name);
 }
