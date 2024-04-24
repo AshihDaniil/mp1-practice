@@ -26,7 +26,7 @@ int main(int argc, char** argv)
 	//std::cout << unLib.get_univer(unLib, 0);
 	//std::cout<<unLib.get_univer(unLib, 1);
 	
-	//unLib.print_univer_info(0);
+	unLib.print_univer_info(0);
 
 
 

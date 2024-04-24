@@ -12,6 +12,18 @@ UnLib::UnLib(int n)
 	this->univer = new Univer[this->count];
 }	
 
+std::ifstream& operator>>(std::ifstream& in, UnLib& unLib)
+{
+	if (unLib.count != 0)
+	{
+		for (int i = 0; i < unLib.count; i++)
+		{
+			in >> unLib.univer[i];
+		}
+	}
+	return in;
+}
+
 void UnLib::read_univers(const std::string& infilename, const int idx)
 {
 
@@ -27,9 +39,9 @@ void UnLib::print_univer_info(int idx)
 {
 	std::cout << this->univer[idx];
 	
-	
+	//бнопня!
 	//Adres adr = this->univer[idx].get_adr(this->univer[idx]);
 	//std::cout << adr;
-	//std::cout << this->univer[idx].get_adr(this->univer[idx]);
+	std::cout << "-------------" <<this->univer[idx].get_adr(this->univer[idx]);
 
 }

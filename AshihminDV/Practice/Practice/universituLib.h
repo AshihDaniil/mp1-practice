@@ -23,6 +23,8 @@ public:
 		return out;
 	}
 
+	friend std::ifstream& operator>>(std::ifstream& in, UnLib& unLib);
+
 	void read_univers(const std::string& infilename, const int idx);
 
 	Univer get_univer(const UnLib& unLib, int idx)
