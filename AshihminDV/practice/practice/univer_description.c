@@ -36,7 +36,8 @@ void fill_univer(const FILE* f, Univer* u)
 void univer_info(Univer* u)
 {
 	printf("Название: %s", u->univer_name);
-	printf("Город: %sУлица: %sДом:%d\nПочтовый Индекс: %d\n", u->address.town, u->address.street, u->address.house, u->address.postcode);
+	printf("Город: %sУлица: %sДом:%d\nПочтовый Индекс: %d\n", u->address.town, u->address.street, u->address.house,
+		u->address.postcode);
 	printf("Описание: %s", u->univer_info);
 }
 
@@ -80,11 +81,6 @@ void min_conc_po_vyzy(Univer* u)
 	int j, idx_ochn = 0, idx_zaochn = 0, idx_vech=0;
 	int idx_ocnh_nforms = 0, idx_zaocnh_nforms = 1, idx_vech_nforms = 2;
 
-	char* name_ochn[100], * name_vech[100], * name_zaochn[100];
-	*name_ochn = u->napr[0].name;
-	*name_vech = u->napr[0].name;
-	*name_zaochn = u->napr[0].name;
-
 	int idx_ochn_univ = 0;
 
 
@@ -92,9 +88,14 @@ void min_conc_po_vyzy(Univer* u)
 	{
 		for (j = 0; j < u->napr[i].nforms; j++) {
 
-			idx_ochn = find_min(&u->napr[i].educational_forms[j], u->napr[idx_ochn].educational_forms[0].score, &idx_ochn_univ, idx_ochn, &i, i, 1, &j, &idx_ocnh_nforms);
-			idx_zaochn = find_min(&u->napr[i].educational_forms[j], u->napr[idx_zaochn].educational_forms[1].score, &idx_ochn_univ, idx_zaochn, &i, i, 2, &j, &idx_zaocnh_nforms);
-			idx_vech = find_min(&u->napr[i].educational_forms[j], u->napr[idx_vech].educational_forms[2].score, &idx_ochn_univ, idx_vech, &i, i, 3, &j, &idx_vech_nforms);
+			idx_ochn = find_min(&u->napr[i].educational_forms[j], u->napr[idx_ochn].educational_forms[0].score, 
+				&idx_ochn_univ, idx_ochn, &i, i, 1, &j, &idx_ocnh_nforms);
+
+			idx_zaochn = find_min(&u->napr[i].educational_forms[j], u->napr[idx_zaochn].educational_forms[1].score, 
+				&idx_ochn_univ, idx_zaochn, &i, i, 2, &j, &idx_zaocnh_nforms);
+
+			idx_vech = find_min(&u->napr[i].educational_forms[j], u->napr[idx_vech].educational_forms[2].score, 
+				&idx_ochn_univ, idx_vech, &i, i, 3, &j, &idx_vech_nforms);
 		}
 	}
 

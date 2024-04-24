@@ -19,7 +19,8 @@ void fill_EducationalFormInfo(const FILE* f, EducationalFormInfo* EdFoIn)
 	fscanf(f, "%d", &EdFoIn->cost);
 }
 
-int find_min(EducationalFormInfo* EdFoIn, int min, int *idx_min_univ, int idx_min_napr, int *idx_univ, int idx_napr, int ed_fo, int* nforms, int* idx_nforms)
+int find_min(EducationalFormInfo* EdFoIn, int min, int *idx_min_univ, int idx_min_napr, int *idx_univ, 
+	int idx_napr, int ed_fo, int* nforms, int* idx_nforms)
 {
 	if (EdFoIn->form_id == ed_fo)
 	{

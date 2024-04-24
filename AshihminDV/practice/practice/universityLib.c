@@ -49,22 +49,30 @@ void min_conc_po_vyzam(UniversityLib* unLib)
 		{
 			for (nforms = 0; nforms < unLib->university[i].napr[j].nforms; nforms++)
 			{
-				idx_ochn = find_min(&unLib->university[i].napr[j].educational_forms[nforms], unLib->university[idx_ochn_univ].napr[idx_ochn].educational_forms[idx_ocnh_nforms].score,
+				idx_ochn = find_min(&unLib->university[i].napr[j].educational_forms[nforms], 
+					unLib->university[idx_ochn_univ].napr[idx_ochn].educational_forms[idx_ocnh_nforms].score,
 					&idx_ochn_univ, idx_ochn, &i, j, 1, &nforms, &idx_ocnh_nforms);
-				idx_zaochn = find_min(&unLib->university[i].napr[j].educational_forms[nforms], unLib->university[idx_zaochn_univ].napr[idx_zaochn].educational_forms[idx_zaocnh_nforms].score, 
+
+				idx_zaochn = find_min(&unLib->university[i].napr[j].educational_forms[nforms], 
+					unLib->university[idx_zaochn_univ].napr[idx_zaochn].educational_forms[idx_zaocnh_nforms].score, 
 					&idx_zaochn_univ, idx_zaochn, &i, j, 2, &nforms, &idx_zaocnh_nforms);
-				idx_vech = find_min(&unLib->university[i].napr[j].educational_forms[nforms], unLib->university[idx_vech_univ].napr[idx_vech].educational_forms[idx_vech_nforms].score, 
+
+				idx_vech = find_min(&unLib->university[i].napr[j].educational_forms[nforms], 
+					unLib->university[idx_vech_univ].napr[idx_vech].educational_forms[idx_vech_nforms].score, 
 					&idx_vech_univ, idx_vech, &i, j, 3, &nforms, &idx_vech_nforms);
 			}
 		}
 	}
-	printf("Минимальный балл очной формы обучения: %d\n", unLib->university[idx_ochn_univ].napr[idx_ochn].educational_forms[idx_ocnh_nforms].score);
+	printf("Минимальный балл очной формы обучения: %d\n", 
+		unLib->university[idx_ochn_univ].napr[idx_ochn].educational_forms[idx_ocnh_nforms].score);
 	printf("Название направления: %s", unLib->university[idx_ochn_univ].napr[idx_ochn].name);
 	printf("ВУЗ: %s", unLib->university[idx_ochn_univ].univer_name);
-	printf("Минимальный балл заочной формы обучения: %d\n", unLib->university[idx_zaochn_univ].napr[idx_zaochn].educational_forms[idx_zaocnh_nforms].score);
+	printf("Минимальный балл заочной формы обучения: %d\n", 
+		unLib->university[idx_zaochn_univ].napr[idx_zaochn].educational_forms[idx_zaocnh_nforms].score);
 	printf("Название направления: %s", unLib->university[idx_zaochn_univ].napr[idx_zaochn].name);
 	printf("ВУЗ: %s", unLib->university[idx_zaochn_univ].univer_name);
-	printf("Минимальный балл вечерней формы обучения: %d\n", unLib->university[idx_vech_univ].napr[idx_vech].educational_forms[idx_vech_nforms].score);
+	printf("Минимальный балл вечерней формы обучения: %d\n", 
+		unLib->university[idx_vech_univ].napr[idx_vech].educational_forms[idx_vech_nforms].score);
 	printf("Название направления: %s", unLib->university[idx_vech_univ].napr[idx_vech].name);
 	printf("ВУЗ: %s\n", unLib->university[idx_vech_univ].univer_name);
 }

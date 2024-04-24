@@ -64,21 +64,7 @@ int main(int argc, char** argv)
 		}
 	}while (button != 0);
 
-	/*if (founded_univ.university != NULL)
-	{
-		for (i = 0; i < founded_univ.count; i++)
-		{
-			free(founded_univ.university[i].univer_name);
-			for (j = 0; j < founded_univ.university[i].count_napr; j++)
-			{
-				free(founded_univ.university[i].napr[j].name);
-				free(founded_univ.university[i].napr[j].educational_forms);
-			}
-			free(founded_univ.university[i].napr);
-		}
-		free(founded_univ.university);
-	}*/
-	printf("GG");
+	
 	free_univ(&unLib, 0);
 	
 

@@ -4,8 +4,6 @@ void university_lib(UniversityLib* unLib, int k)
 {
 	int n_u = 0, n_u_p = 0;
 
-	//setlocale(LC_ALL, "Rus");
-
 	printf("Введите номер ВУЗа, чтобы узнать о нем больше информации\n\n");
 	print_univers(unLib);
 	do {
