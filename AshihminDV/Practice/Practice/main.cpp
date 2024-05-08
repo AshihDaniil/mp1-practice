@@ -3,9 +3,7 @@
 int main(int argc, char** argv)
 {
 	setlocale(LC_ALL, "Rus");
-
 	const int count = 2;
-
 	std::string infilename[count];
 
 	for(int i = 0; i<count; i++)
@@ -15,33 +13,7 @@ int main(int argc, char** argv)
 
 	UnLib unLib(count, infilename);
 
-	//unLib.read_univers(infilename, count);
-
 	std::cout << std::endl;
-
-	/*for (int i = 0; i < count; i++)
-	{
-		std::ifstream in;
-		std::cout << infilename << std::endl;
-		in.open(infilename[i]);
-		in >> unLib.univer[i];
-		in.close();
-	}*/
-
-	//std::cout << unLib.get_univer(0);
-	//std::cout<<unLib.get_univer(unLib, 1);
-	
-	//unLib.print_univer_info(0);
-
-	/*std::cout << "----------" << std::endl;
-
-	std::cout << unLib;
-
-	std::cout << "----------" << std::endl;
-
-	std::cout << unLib.get_univer(unLib, 0);*/
-
-	//main_menu(unLib);
 
 	std::string button = "1";
 	do
@@ -56,22 +28,17 @@ int main(int argc, char** argv)
 		std::cin >> button;
 		std::cout << std::endl;
 
-		const int length = button.length();
-		char* button_char = new char[length + 1];
-		strcpy_s(button_char, strlen(button_char), button.c_str());
-
 		std::string button1;
 		std::string button2;
 
-		UnLib founded_univ;
-		UnLib worked_univ;
+		/*UnLib founded_univ;
+		UnLib worked_univ;*/
 
-		switch (*button_char)
+		if (button == "1")
 		{
-		case '1':
 			unLib.university_lib();
-			break;
-		case '2':
+		}
+		/*case '2':
 			do
 			{
 				std::cout << unLib;
@@ -120,7 +87,7 @@ int main(int argc, char** argv)
 		default:
 			std::cout << "Некорректный ввод" << std::endl;
 			break;
-		}
+		}*/
 	} while (button != "0");
 
 	return 0;

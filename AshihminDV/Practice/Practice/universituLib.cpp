@@ -43,7 +43,7 @@ UnLib::UnLib(int n, const std::string* infilename)
 	}
 }
 
-/*UnLib::~UnLib()
+UnLib::~UnLib()
 {
 	std::cout << "UnLib::~UnLib()" << std::endl;
 	if (univer != nullptr)
@@ -51,7 +51,7 @@ UnLib::UnLib(int n, const std::string* infilename)
 		delete[] this->univer;
 	}
 
-}*/
+}
 
 std::ifstream& operator>>(std::ifstream& in, UnLib& unLib)
 {

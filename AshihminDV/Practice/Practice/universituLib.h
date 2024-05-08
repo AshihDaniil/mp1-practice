@@ -12,15 +12,15 @@ public:
 	UnLib();
 	UnLib(int n);
 	UnLib(int n, const std::string* infilename);
-	//~UnLib();
+	~UnLib();
 
 
 	friend std::ostream& operator<<(std::ostream& out, const UnLib& unLib)
 	{
 		for (int i = 0; i < unLib.count; i++)
 		{
-			out << i+1 << " ÂÓÇ - " << unLib.univer[i].get_univer_name() << 
-				std::endl;
+			std::string name = unLib.univer[i].get_univer_name();
+			out << i+1 << " ÂÓÇ - " << name << std::endl;
 		}
 		return out;
 	}

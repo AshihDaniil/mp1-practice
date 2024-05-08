@@ -32,27 +32,27 @@ class Univer
 
 		const Univer& operator= (const Univer&);
 
-		std::string get_univer_name()
+		std::string get_univer_name() const
 		{
 			return this->univer_name;
 		}
 		
-		Adres get_adr()
+		Adres get_adr() const
 		{
 			return adres;
 		}
 
-		std::string get_univer_info(const Univer& u)
+		std::string get_univer_info(const Univer& u) const
 		{
 			return u.info;
 		}
 
-		int get_count_napr()
+		int get_count_napr() const
 		{
 			return count_napr;
 		}
 
-		Napr get_napr(int idx)
+		Napr get_napr(int idx) const
 		{
 			return napr[idx];
 		}

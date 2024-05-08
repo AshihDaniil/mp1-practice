@@ -30,13 +30,15 @@ std::ifstream& operator>>(std::ifstream& in, Univer& u)
 	getline(in, u.univer_name);
 	in >> u.adres;
 
-	std::string trash;
-	getline(in, trash);
+	//std::string trash;
+	//getline(in, trash);
+	in.ignore(1);
 
 	getline(in, u.info);
 	in >> u.count_napr;
 
-	getline(in, trash);
+	//getline(in, trash);
+	in.ignore(1);
 
 	u.napr = new Napr[u.count_napr];
 
