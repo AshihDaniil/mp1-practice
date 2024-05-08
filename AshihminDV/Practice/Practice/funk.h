@@ -1,4 +1,5 @@
 #pragma once
 #include "universituLib.h"
 
-void main_menu();
+void choose_univ(UnLib&);
+void main_menu(UnLib&);

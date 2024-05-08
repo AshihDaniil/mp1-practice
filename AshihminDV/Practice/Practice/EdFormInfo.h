@@ -24,9 +24,20 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& out, const EdFormInfo& EdFoIn)
 	{
-		out << std::to_string(EdFoIn.form_id) << std::endl;
-		out << EdFoIn.score << std::endl;
-		out << EdFoIn.cost << std::endl;
+		if (EdFoIn.form_id == 1)
+		{
+			out << "Форма обучения - Очная" << std::endl;
+		}
+		else if (EdFoIn.form_id == 2)
+		{
+			out << "Форма обучения - Заочная" << std::endl;
+		}
+		else
+		{
+			out << "Форма обучения - Вечерняя" << std::endl;
+		}
+		out << "Проходной балл - " << EdFoIn.score << std::endl;
+		out << "Стоимость договорного обучения - " << EdFoIn.cost ;
 		return out;
 	}
 
