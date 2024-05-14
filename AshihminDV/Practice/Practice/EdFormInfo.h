@@ -56,4 +56,9 @@ public:
 			this->form_id = EducationalForm::VECHERNYA;
 		}
 	}
+
+	int get_form_id() const { return form_id; }
+
+	int get_score() const { return score; }
+
 };

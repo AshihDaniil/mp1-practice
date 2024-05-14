@@ -47,12 +47,25 @@ std::ifstream & operator>>(std::ifstream & in, Napr & napr)
 }
 const Napr& Napr::operator= (const Napr& n)
 {
-	this->napr_name = n.napr_name;
-	this->nforms = n.nforms;
-	this->education_forms = new EdFormInfo[nforms];
-	for (int i = 0; i < nforms; i++)
+	if (this == &n) {
+		return *this;
+	}
+
+	if(this->education_forms != nullptr)
 	{
-		this->education_forms[i] = n.education_forms[i];
+		delete[] education_forms;
+	}
+
+	napr_name = n.napr_name;
+	nforms = n.nforms;
+	if (nforms > 0) {
+		education_forms = new EdFormInfo[nforms];
+		for (int i = 0; i < nforms; i++) {
+			education_forms[i] = n.education_forms[i];
+		}
+	}
+	else {
+		education_forms = nullptr;
 	}
 
 	return *this;

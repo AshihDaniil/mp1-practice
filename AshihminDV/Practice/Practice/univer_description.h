@@ -66,6 +66,7 @@ class Univer
 		{
 			this->count_napr = k;
 			this->napr = new Napr[k];
+			int i = 0;
 		}
 
 		void set_name_univ(const std::string name)
@@ -79,5 +80,11 @@ class Univer
 		}
 
 		void list_napr();
+
+		void copy_univ(const int idx_napr_to_copy, const int idx_napr_from_copy,
+			const int idx_edform_to_copy, const int idx_edform_from_copy, const Univer& univer);
+		
+
+		void min_ball();
 
 };

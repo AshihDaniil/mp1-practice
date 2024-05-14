@@ -10,12 +10,12 @@ Informatics and computer science
 OCHNAYA
 222
 141500
-VECHERNYA
-118
-56600
 ZAOCHNAY
 200
 49600
+VECHERNYA
+118
+56600
 Applied mathematics and informatics
 1
 OCHNAYA

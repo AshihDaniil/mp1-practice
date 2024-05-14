@@ -31,17 +31,17 @@ public:
 
 	void read_univers(const std::string* infilename, const int k);
 
-	Univer get_univer(int idx)
+	Univer get_univer(int idx) const
 	{
 		return univer[idx];
 	}
 
-	Univer get_univers()
+	Univer get_univers() const
 	{
 		return *univer;
 	}
 
-	int get_count()
+	int get_count() const
 	{
 		return count;
 	}
@@ -53,5 +53,9 @@ public:
 	void print_founded();
 
 	UnLib find_napr();
+
+	void min_ball();
+
+
 
 };

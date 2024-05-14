@@ -45,7 +45,7 @@ UnLib::UnLib(int n, const std::string* infilename)
 
 UnLib::~UnLib()
 {
-	std::cout << "UnLib::~UnLib()" << std::endl;
+	//std::cout << "UnLib::~UnLib()" << std::endl;
 	if (univer != nullptr)
 	{
 		delete[] this->univer;
@@ -110,11 +110,12 @@ void UnLib::print_univer_info(int idx)
 
 void UnLib::university_lib()
 {
+	std::cout << "1 - Список университетов и их описание" << std::endl;
 	std::string button1;
 	do
 	{
 		std::cout << *this;
-		std::cout << "Выберите ВУЗ: ";
+		std::cout << "Выберите номер ВУЗа(для выхода введите 0): ";
 		std::cin >> button1;
 		if (button1 > "0" && button1 <= std::to_string(this->get_count()) && 
 			stoi(button1)>0 && stoi(button1)<=this->get_count())
@@ -146,10 +147,11 @@ UnLib UnLib::find_napr()
 
 	getline(std::cin, name);
 
-	int i = 0, j = 0, count_univ=0;
-	for (i = 0; i < this->count; i++)
+	int count_univ = 0, count_napr=0;
+
+	for (int i = 0; i < this->count; i++)
 	{
-		for (j = 0; j < this->univer[i].get_count_napr(); j++)
+		for (int j = 0; j < this->univer[i].get_count_napr(); j++)
 		{
 			if (name == this->univer[i].get_napr(j).get_napr_name())
 			{
@@ -161,56 +163,52 @@ UnLib UnLib::find_napr()
 
 	UnLib founded_univ(count_univ);
 
-	int count_sovp = 0;
+	count_univ = 0;
 
-	for (i = 0; i < this->count; i++)
+	for (int i = 0; i < this->count; i++)
 	{
-		for (j = 0; j < this->univer[i].get_count_napr(); j++)
+		for (int j = 0; j < this->univer[i].get_count_napr(); j++)
 		{
 			if (name == this->univer[i].get_napr(j).get_napr_name())
 			{
-				count_sovp++;
+				count_napr++;
 			}
 		}
-		if (count_sovp != 0)
+		if (count_napr != 0)
 		{
-			founded_univ.univer[i].make_naprs(count_sovp);
-			count_sovp = 0;
+			founded_univ.univer[count_univ].make_naprs(count_napr);
+			count_napr = 0;
+			count_univ++;
 		}
 	}
 
-	//work
+	count_univ = 0;
 
-	count_sovp = 0;
-	int idx_univ = 0;
-
-	
-
-	for (i = 0; i < this->count; i++)
+	for (int i = 0; i < this->count; i++)
 	{
-		for(j = 0; j<this->univer[i].get_count_napr(); j++)
+		for (int j = 0; j < this->univer[i].get_count_napr(); j++)
 		{
-			
 			if (name == this->univer[i].get_napr(j).get_napr_name())
 			{
+				if (name == this->univer[i].get_napr(j).get_napr_name())
+				{
 
-				founded_univ.univer[idx_univ].set_naprs(count_sovp,
-					this->univer[i].get_napr(j));
+					founded_univ.univer[count_univ].set_naprs(count_napr,
+						this->univer[i].get_napr(j));
 
-				count_sovp++;
+					count_napr++;
+				}
+			}
+			if (count_napr != 0)
+			{
+				count_napr = 0;
+
+				founded_univ.univer[count_univ].set_name_univ(this->univer[i].get_univer_name());
+
+				count_univ++;
 			}
 		}
-		if (count_sovp != 0)
-		{
-			count_sovp = 0;
-
-			founded_univ.univer[idx_univ].set_name_univ(this->univer[i].get_univer_name());
-
-			idx_univ++;
-		}
 	}
-
-	//founded_univ.print_founded();
 
 	if (founded_univ.univer == nullptr)
 	{
@@ -222,8 +220,59 @@ UnLib UnLib::find_napr()
 		{
 			founded_univ.count = 0;
 		}
-	}	
+	}
 
 	return founded_univ;
+}
+
+void UnLib::min_ball()
+{
+	Univer Ochn(1), Zaochn(1), Vech(1);
+	Ochn.copy_univ(0, 0, 0, 0, this->univer[0]);
+	Zaochn.copy_univ(0, 0, 0, 1, this->univer[0]);
+	Vech.copy_univ(0, 0, 0, 2, this->univer[0]);
+	for (int i = 0; i < this->count; i++)
+	{
+		std::cout << i << std::endl;
+		for (int j = 0; j < this->univer[i].get_count_napr(); j++)
+		{
+			for (int g = 0; g < this->univer[i].get_napr(j).get_nforms(); g++)
+			{
+				if (this->univer[i].get_napr(j).get_ed_form(g).get_form_id() == 1
+					&& this->univer[i].get_napr(j).get_ed_form(g).get_score() <
+					Ochn.get_napr(0).get_ed_form(0).get_score())
+				{
+					Ochn.copy_univ(0, j, 0, g,
+						this->univer[i]);
+				}
+				if (this->univer[i].get_napr(j).get_ed_form(g).get_form_id() == 2
+					&& this->univer[i].get_napr(j).get_ed_form(g).get_score() <
+					Zaochn.get_napr(0).get_ed_form(0).get_score())
+				{
+					Zaochn.copy_univ(0, j, 0, g,
+						this->univer[i]);
+				}
+				if (this->univer[i].get_napr(j).get_ed_form(g).get_form_id() == 3
+					&& this->univer[i].get_napr(j).get_ed_form(g).get_score() <
+					Vech.get_napr(0).get_ed_form(0).get_score())
+				{
+					Vech.copy_univ(0, j, 0, g,
+						this->univer[i]);
+				}
+			}
+		}
+	}
+
+	std::cout << "----Минимальный балл очной формы обучения----" << std::endl;
+	std::cout << Ochn;
+	std::cout << Ochn.get_napr(0);
+	
+	std::cout << "----Минимальный балл заочной формы обучения----" << std::endl;
+	std::cout << Zaochn;
+	std::cout << Zaochn.get_napr(0);
+
+	std::cout << "----Минимальный балл вечерней формы обучения----" << std::endl;
+	std::cout << Vech;
+	std::cout << Vech.get_napr(0);
 
 }

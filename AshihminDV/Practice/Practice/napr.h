@@ -31,7 +31,33 @@ public:
 	}
 	const Napr& operator= (const Napr& n);
 
+	int get_nforms() const { return nforms; }
 
+	void set_napr_name(const std::string name) { napr_name = name; }
+
+	EdFormInfo get_ed_form(int idx) const
+	{
+		return education_forms[idx];
+	}
+
+	void copy_napr(int idx_ed_fo, int idx_ed_form_from, const Napr& napr)
+	{
+		napr_name = napr.napr_name;
+		education_forms[idx_ed_fo] = napr.education_forms[idx_ed_form_from];
+	}
+
+	void copy_napr(int idx_ed_fo, int idx_ed_form_from, int nf, const Napr& napr)
+	{
+		napr_name = napr.napr_name;
+		this->nforms = nf;
+		education_forms = new EdFormInfo[nf];
+		education_forms[idx_ed_fo] = napr.education_forms[idx_ed_form_from];
+	}
+
+	void set_ed_forms(int k)
+	{
+		education_forms = new EdFormInfo[k];
+	}
 
 	std::string get_napr_name()
 	{
