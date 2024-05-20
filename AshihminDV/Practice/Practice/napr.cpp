@@ -12,14 +12,25 @@ Napr::Napr(int n)
 	this->education_forms = new EdFormInfo [n];
 }
 
-/*Napr::~Napr()
+Napr::Napr(const Napr& napr)
 {
-	std::cout << "Napr::~Napr()" << std::endl;
+	this->nforms = napr.nforms;
+	this->napr_name = napr.napr_name;
+	this->education_forms = new EdFormInfo[this->nforms];
+	for (int i = 0; i < this->nforms; i++)
+	{
+		this->education_forms[i] = napr.education_forms[i];
+	}
+}
+
+Napr::~Napr()
+{
+	
 	if (education_forms != nullptr)
 	{
 		delete [] this->education_forms;
 	}
-}*/
+}
 
 std::ifstream & operator>>(std::ifstream & in, Napr & napr)
 {

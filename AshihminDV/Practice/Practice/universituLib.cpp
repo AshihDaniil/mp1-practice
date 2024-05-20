@@ -36,16 +36,31 @@ UnLib::UnLib(int n, const std::string* infilename)
 	for (int i = 0; i < n; i++)
 	{
 		std::ifstream in;
-		std::cout << infilename[i] << std::endl;
 		in.open(infilename[i]);
 		in >> this->univer[i];
 		in.close();
 	}
 }
 
+UnLib::UnLib(const UnLib& unLib)
+{
+	this->count = unLib.count;
+	if (this->count != 0 && unLib.univer != nullptr)
+	{
+		this->univer = new Univer[this->count];
+		for (int i = 0; i < this->count; i++)
+		{
+			this->univer[i] = unLib.univer[i];
+		}
+	}
+	else
+	{
+		this->univer = nullptr;
+	}
+}
+
 UnLib::~UnLib()
 {
-	//std::cout << "UnLib::~UnLib()" << std::endl;
 	if (univer != nullptr)
 	{
 		delete[] this->univer;
@@ -97,17 +112,6 @@ void UnLib::read_univers(const std::string* infilename, const int k)
 	}
 }
 
-void UnLib::print_univer_info(int idx)
-{
-	std::cout << this->univer[idx];
-	
-	//ВОПРОС!
-	//Adres adr = this->univer[idx].get_adr(this->univer[idx]);
-	//std::cout << adr;
-	//std::cout << "-------------" <<this->univer[idx].get_adr(this->univer[idx]);
-
-}
-
 void UnLib::university_lib()
 {
 	std::cout << "1 - Список университетов и их описание" << std::endl;
@@ -117,6 +121,7 @@ void UnLib::university_lib()
 		std::cout << *this;
 		std::cout << "Выберите номер ВУЗа(для выхода введите 0): ";
 		std::cin >> button1;
+		std::cout << std::endl;
 		if (button1 > "0" && button1 <= std::to_string(this->get_count()) && 
 			stoi(button1)>0 && stoi(button1)<=this->get_count())
 		{
@@ -146,6 +151,7 @@ UnLib UnLib::find_napr()
 	std::string name;
 
 	getline(std::cin, name);
+	std::cout << std::endl;
 
 	int count_univ = 0, count_napr=0;
 
@@ -233,7 +239,6 @@ void UnLib::min_ball()
 	Vech.copy_univ(0, 0, 0, 2, this->univer[0]);
 	for (int i = 0; i < this->count; i++)
 	{
-		std::cout << i << std::endl;
 		for (int j = 0; j < this->univer[i].get_count_napr(); j++)
 		{
 			for (int g = 0; g < this->univer[i].get_napr(j).get_nforms(); g++)
@@ -264,15 +269,15 @@ void UnLib::min_ball()
 	}
 
 	std::cout << "----Минимальный балл очной формы обучения----" << std::endl;
-	std::cout << Ochn;
+	std::cout << "Название университета - " << Ochn.get_univer_name() << std::endl;
 	std::cout << Ochn.get_napr(0);
 	
 	std::cout << "----Минимальный балл заочной формы обучения----" << std::endl;
-	std::cout << Zaochn;
+	std::cout << "Название университета - " << Zaochn.get_univer_name() << std::endl;
 	std::cout << Zaochn.get_napr(0);
 
 	std::cout << "----Минимальный балл вечерней формы обучения----" << std::endl;
-	std::cout << Vech;
+	std::cout << "Название университета - " << Vech.get_univer_name() << std::endl;
 	std::cout << Vech.get_napr(0);
 
 }

@@ -1,0 +1,55 @@
+Minin University
+Nizhny Novgorod
+ul. Ulyanova
+1 603002
+Nizhny Novgorod State Pedagogical University named after Kozma Minin (Minin University) is a pedagogical higher education institution in Nizhny Novgorod. The University was founded in 1911 as the Nizhny Novgorod Teachers' Institute. Exactly one hundred years later in 2011 it was merged with Volga State Engineering and Pedagogical University. Nowadays it includes 9 faculties, 31 departments, 13 research laboratories and centres, 1 research institute of applied psychology, regional research and education centre, Technopark of universal pedagogical competences and Quantorium.
+8
+Pedagogical Education
+3
+OCHNAYA
+234
+124800
+ZAOCHNAY
+209
+63700
+VECHERNYA
+160
+67800
+Information systems and technologies
+1
+OCHNAYA
+210
+151850
+Applied informatics in management
+1
+OCHNAYA
+203
+151850
+Regional Policy and Spatial Design
+1
+OCHNAYA
+155
+151850
+Finance and business analytics
+2
+OCHNAYA
+205
+132400
+ZAOCHNAY
+180
+70000
+Pedagogical Education (with two training profiles)/History and Social Studies
+1
+OCHNAYA
+252
+132400
+Environmental Design
+1
+OCHNAYA
+251
+209600
+Primary education and supplementary education
+1
+OCHNAYA
+244
+132400

@@ -1,0 +1,57 @@
+Institute of Food Technology and Design
+Nizhny Novgorod
+Gornaya str.
+13
+603062
+"Institute of Food Technologies and Design - branch of the State Budgetary Educational Institution of Higher Education "Nizhny Novgorod State Engineering and Economic University". Engineering and Economic University of Nizhny Novgorod".
+7
+Informatics and computer science
+3
+OCHNAYA
+170
+136000
+ZAOCHNAY
+60
+45000
+VECHERNYA
+100
+70000
+Information systems and technologies
+2
+OCHNAYA
+180
+136000
+VECHERNYA
+60
+70000
+Infocommunication technologies and communication systems
+2
+OCHNAYA
+150
+136000
+VECHERNYA
+120
+60000
+Agroengineering
+2
+OCHNAYA
+140
+136000
+VECHERNYA
+110
+70000
+Economy
+1
+OCHNAYA
+190
+95900
+Business Informatics
+1
+OCHNAYA
+180
+95900
+Service
+1
+VECHERNYA
+160
+42000

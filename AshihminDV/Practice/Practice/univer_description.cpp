@@ -12,16 +12,28 @@ Univer::Univer(int n)
 	this->napr = new Napr[n];
 }
 
-
-
-/*Univer::~Univer()
+Univer::Univer(const Univer& un)
 {
-	std::cout << "Univer::~Univer()" << std::endl;
+	this->count_napr = un.count_napr;
+	this->univer_name = un.univer_name;
+	this->adres = un.adres;
+	this->info = un.info;
+	this->napr = new Napr[this->count_napr];
+	for (int i = 0; i < this->count_napr; i++)
+	{
+		this->napr[i] = un.napr[i];
+	}
+
+}
+
+Univer::~Univer()
+{
+	
 	if (napr != nullptr)
 	{
 		delete[] this->napr;
 	}
-}*/
+}
 
 
 std::ifstream& operator>>(std::ifstream& in, Univer& u)
@@ -105,8 +117,10 @@ void Univer::min_ball()
 			}
 		}
 	}
-
+	std::cout << "----Минимальный балл очной формы обучения----" << std::endl;
 	std::cout << ochn;
+	std::cout << "----Минимальный балл заочной формы обучения----" << std::endl;
 	std::cout << zaochn;
+	std::cout << "----Минимальный балл вечерней формы обучения----" << std::endl;
 	std::cout << vech;
 }

@@ -13,12 +13,13 @@ public:
 
 	Napr();
 	Napr(int n);
-	//~Napr();
+	Napr(const Napr&);
+	~Napr();
 
 	friend std::ifstream& operator>>(std::ifstream& in, Napr& napr);
 	friend std::ostream& operator<<(std::ostream& out, const Napr& napr)
 	{
-		out << "Название - " << napr.napr_name << std::endl;
+		out << "Название направления - " << napr.napr_name << std::endl;
 		out << "Количество форм обучения - " << napr.nforms << std::endl;
 		for (int i = 0; i < napr.nforms; i++)
 		{

@@ -18,7 +18,8 @@ class Univer
 
 		Univer();
 		Univer(int n);
-		//~Univer();
+		Univer(const Univer&);
+		~Univer();
 
 		friend std::ostream& operator<<(std::ostream& out, const Univer& u)
 		{

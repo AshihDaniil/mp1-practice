@@ -12,6 +12,7 @@ public:
 	UnLib();
 	UnLib(int n);
 	UnLib(int n, const std::string* infilename);
+	UnLib(const UnLib&);
 	~UnLib();
 
 

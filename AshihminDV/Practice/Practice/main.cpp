@@ -3,11 +3,13 @@
 int main(int argc, char** argv)
 {
 	setlocale(LC_ALL, "Rus");
-	const int count = 2;
+	const int count = 4;
 	std::string infilename[count];
 
 	infilename[0] = "university_Alekseev.txt";
 	infilename[1] = "university_Lobachevsky.txt";
+	infilename[2] = "university_Minin.txt";
+	infilename[3] = "university_YPTD.txt";
 
 	UnLib unLib(count, infilename);
 
@@ -46,9 +48,7 @@ int main(int argc, char** argv)
 		}
 		else if (button == "4")
 		{
-			std::cout << unLib;
-			std::cin >> button1;
-			unLib.get_univer(std::stoi(button1)-1).min_ball();
+			p_min_po_vyzy(unLib);
 		}
 		else if (button == "5")
 		{
