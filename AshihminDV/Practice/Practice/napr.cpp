@@ -81,3 +81,17 @@ const Napr& Napr::operator= (const Napr& n)
 
 	return *this;
 }
+
+void Napr::copy_napr(int idx_ed_fo, int idx_ed_form_from, const Napr& napr)
+{
+	napr_name = napr.napr_name;
+	education_forms[idx_ed_fo] = napr.education_forms[idx_ed_form_from];
+}
+
+void Napr::copy_napr(int idx_ed_fo, int idx_ed_form_from, int nf, const Napr& napr)
+{
+	napr_name = napr.napr_name;
+	this->nforms = nf;
+	education_forms = new EdFormInfo[nf];
+	education_forms[idx_ed_fo] = napr.education_forms[idx_ed_form_from];
+}

@@ -33,13 +33,7 @@ UnLib::UnLib(int n, const std::string* infilename)
 		this->univer = nullptr;
 	}
 
-	for (int i = 0; i < n; i++)
-	{
-		std::ifstream in;
-		in.open(infilename[i]);
-		in >> this->univer[i];
-		in.close();
-	}
+	read_univers(infilename, n);
 }
 
 UnLib::UnLib(const UnLib& unLib)
@@ -103,9 +97,6 @@ void UnLib::read_univers(const std::string* infilename, const int k)
 	for (int i = 0; i < k; i++)
 	{
 		std::ifstream in;
-
-		std::cout << infilename[i] << std::endl;
-
 		in.open(infilename[i]);
 		in >> this->univer[i];
 		in.close();

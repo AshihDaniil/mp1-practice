@@ -6,7 +6,7 @@ class UnLib
 private:
 	int count;
 	Univer* univer;
-
+	void read_univers(const std::string* infilename, const int k);
 public:
 
 	UnLib();
@@ -30,22 +30,11 @@ public:
 
 	const UnLib& operator= (const UnLib&);
 
-	void read_univers(const std::string* infilename, const int k);
+	Univer get_univer(int idx) const{return univer[idx];}
 
-	Univer get_univer(int idx) const
-	{
-		return univer[idx];
-	}
+	Univer get_univers() const {return *univer;}
 
-	Univer get_univers() const
-	{
-		return *univer;
-	}
-
-	int get_count() const
-	{
-		return count;
-	}
+	int get_count() const {return count;}
 
 	void print_univer_info(int idx);
 

@@ -26,10 +26,11 @@ void p_univ_napr(const UnLib& unLib)
 UnLib p_find_napr(UnLib& unLib)
 {
 	std::cin.ignore(1);
+	
 	UnLib founded_univ, worked_univ;
 	do
 	{
-
+		std::cout << "Введите название направлянеия(для возрата в меню введите return)" << std::endl;
 		worked_univ = unLib.find_napr();
 		if (worked_univ.get_count() == 0)
 		{

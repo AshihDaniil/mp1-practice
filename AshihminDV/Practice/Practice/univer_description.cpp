@@ -72,6 +72,13 @@ const Univer& Univer::operator= (const Univer& u)
 	return *this;
 }
 
+void Univer::make_naprs(int k)
+{
+	this->count_napr = k;
+	this->napr = new Napr[k];
+	int i = 0;
+}
+
 void Univer::list_napr()
 {
 	for (int i = 0; i < this->count_napr; i++)

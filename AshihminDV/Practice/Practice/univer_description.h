@@ -63,12 +63,7 @@ class Univer
 			count_napr = k;
 		}
 
-		void make_naprs(int k)
-		{
-			this->count_napr = k;
-			this->napr = new Napr[k];
-			int i = 0;
-		}
+		void make_naprs(int k);
 
 		void set_name_univ(const std::string name)
 		{
